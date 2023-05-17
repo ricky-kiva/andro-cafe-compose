@@ -147,3 +147,90 @@ fun ButtonWithText(text: String, modifier: Modifier = Modifier) {
         Text(text, textAlign = TextAlign.Center)
     }
 }*/
+
+// Scaffold: is a layout structure following standard Material Design
+// - it contains component called slot, such as App Bar, FAB, SnackBar, Bottom Navigation, & Navigation Drawer
+/* usage of Scaffold:
+@Composable
+fun JetCoffeeApp() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "My Scaffold")
+                },
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {}) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            }
+        },
+    )
+}
+*/
+
+/* making custom Scaffold topBar:
+Scaffold(
+    topBar = {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .height(80.dp)
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.primary)
+        ) {
+            Image(
+                painter = painterResource(R.drawable.dicoding_logo),
+                contentDescription = null,
+                modifier = Modifier.height(40.dp)
+            )
+        }
+})*/
+
+// Slot-based Layout is a layout that could be filled with another Composable Function, like Scaffold
+/* customizing Slot-based Layout (TopAppBar):
+@Composable
+fun MyTopBar() {
+    var showMenu by remember { mutableStateOf(false) }
+    TopAppBar(
+        navigationIcon = {
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
+            }
+        },
+        title = {
+            Text(text = "My Scaffold")
+        },
+        actions = {
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Default.Favorite, contentDescription = "Favorite")
+            }
+            IconButton(onClick = { showMenu = !showMenu }) {
+                Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More")
+            }
+            DropdownMenu(
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            ) {
+                DropdownMenuItem(onClick = {}) {
+                    Text(text = "Call me")
+                }
+            }
+        }
+    )
+}*/
+
+// Custom Slot-Based Layout: Do it with HoF mechanism. use function type `@Composable ()-> Unit` as parameter. If the parameter is functional, make it nullable
+/* example:
+@Composable
+fun TopAppBar(
+    title: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    navigationIcon: @Composable (() -> Unit)? = null,
+    actions: @Composable RowScope.() -> Unit = {},
+    backgroundColor: Color = MaterialTheme.colors.primarySurface,
+    contentColor: Color = contentColorFor(backgroundColor),
+    elevation: Dp = AppBarDefaults.TopAppBarElevation
+)
+*/
