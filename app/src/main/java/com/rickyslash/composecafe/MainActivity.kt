@@ -17,7 +17,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeCafeTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     Greeting("Android")
                 }
@@ -38,3 +37,47 @@ fun DefaultPreview() {
         Greeting("Android")
     }
 }
+
+// ways in arranging component in Compose:
+// - Column: vertically
+// - Row: horizontally
+// - Box: in front / behind another element
+
+/* example:
+@Composable
+inline fun Row(
+    modifier: Modifier = Modifier,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
+    verticalAlignment: Alignment.Vertical = Alignment.Top,
+    content: @Composable RowScope.() -> Unit
+)*/
+
+// Arrangement: to arrange components inside some layout
+// - Space Between
+// - Space Around
+// - Space Evenly
+// - End (LTR)
+// - Center
+// - Start (LTR)
+
+// Alignment: to organize position inside some layout
+// - Column:
+// --- Start, CenterHorizontally, End
+// - Row:
+// --- Top, CenterVertically, End
+// - Box:
+// --- TopStart, TopCenter, TopEnd
+// --- CenterStart, Center, CenterEnd
+// --- BottomStart, BottomCenter, BottomEnd
+
+// use `Modifier` to align child element: `Modifier.align(Alignment.CenterVertically)`
+
+// Weight: proportion of element inside a layout
+// - `fill` to state whether an element fill the screen width or not
+// - if only 1 element that given `weight`, that element will `fill` the layout while other element retain their size
+/* example:
+Row {
+    ButtonWithText("1", Modifier.weight(1f))
+    ButtonWithText("2", Modifier.weight(2f))
+    ButtonWithText("3 fill true", Modifier.weight(weight = 3f, fill = true))
+}*/
