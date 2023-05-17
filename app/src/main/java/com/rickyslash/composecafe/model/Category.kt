@@ -18,5 +18,4 @@ val dummyCategory = listOf(
     R.drawable.icon_category_latte to R.string.category_latte,
     R.drawable.icon_category_macchiato to R.string.category_macchiato,
     R.drawable.icon_category_mocha to R.string.category_mocha,
-
 ).map { Category(it.first, it.second) }
