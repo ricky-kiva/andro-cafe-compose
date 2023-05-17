@@ -16,25 +16,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeCafeTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
+            ComposeCafe()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ComposeCafe() {
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposeCafeTheme {
-        Greeting("Android")
+        ComposeCafe()
     }
 }
 
