@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rickyslash.composecafe.components.HomeSection
 import com.rickyslash.composecafe.components.SearchBar
 import com.rickyslash.composecafe.model.*
 import com.rickyslash.composecafe.ui.theme.ComposeCafeTheme
@@ -33,12 +34,16 @@ class MainActivity : ComponentActivity() {
 fun ComposeCafe() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(stringResource(R.string.section_category))
-        CategoryRow()
-        SectionText(stringResource(R.string.section_favorite_menu))
-        MenuRow(dummyMenu)
-        SectionText(stringResource(R.string.section_best_seller_menu))
-        MenuRow(dummyBestSellerMenu)
+        HomeSection(
+            title = stringResource(R.string.section_category),
+            content = { CategoryRow() }
+        )
+        HomeSection(
+            title = stringResource(R.string.section_favorite_menu),
+            content = { MenuRow(dummyMenu) })
+        HomeSection(
+            title = stringResource(R.string.section_best_seller_menu),
+            content = { MenuRow(dummyBestSellerMenu) })
     }
 }
 
